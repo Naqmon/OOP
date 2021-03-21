@@ -23,10 +23,14 @@ public class Location
     {
         this(0, 0);
     }
-    public static boolean equals(){
-        return true;
+    public boolean equals(Location loc){
+        int x = xCoord;
+        int y = yCoord;
+        return x == loc.xCoord && y == loc.yCoord;
     }
-    public static int hashcode(){
-        return 0;
+    public int hashcode(){
+        int x = xCoord;
+        int y = yCoord;
+        return (x*y + x - y)*x-y*y;
     }
 }

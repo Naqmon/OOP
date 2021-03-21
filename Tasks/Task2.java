@@ -23,12 +23,12 @@ public class Task2 {
     public static boolean getXO(String s){
         int x = 0;
         int o = 0;
+        s = s.toLowerCase();
         for (int i = 0; i < s.length(); i++){
             if (s.charAt(i) == 'x'){x++;}
             if (s.charAt(i) == 'o'){o++;}
         }
-        if (x == o) { return true; }
-        return false;
+        return x == o;
     }
     
     public static int programmers(int a, int b, int c){
@@ -61,7 +61,7 @@ public class Task2 {
         return max - min;
     }
     public static double discount(int price, int sale){
-        return price*(1 - sale/100.0);
+        return price*(sale/100.0);
     }
 
     public static String nameShuffle(String name){
@@ -74,25 +74,6 @@ public class Task2 {
 
     public static void main(String[] args){
         int[] array = {324, 4, 36, 7435, 23, -345, -3};
-        System.out.print("oppositeHouse(3, 8) -> ");
-        System.out.println(oppositeHouse(3, 8));
-        System.out.print("nameShuffle(Ivan Ivanov) -> ");
-        System.out.println(nameShuffle("Ivan Ivanov"));
-        System.out.print("discount(500, 50) -> ");
-        System.out.println(discount(500, 50));
-        System.out.print("differenceMaxMin(array) -> ");
-        System.out.println(differenceMaxMin(array));
-        System.out.print("equal(12, 12, 32) -> ");
-        System.out.println(equal(12, 12, 32));
-        System.out.print("reverse(abcdefg) -> ");
-        System.out.println(reverse("abcdefg"));
-        System.out.print("programmers(123, 421, 532) -> ");
-        System.out.println(programmers(123, 421, 532));
-        System.out.print("getXO(xasxoo oxogoscohsox) -> ");
-        System.out.println(getXO("xasxoo oxogoscohsox"));
-        System.out.print("bomb(asdfbomb bcsdf) -> ");
-        System.out.println(bomb("asdfbomb bcsdf"));
-        System.out.print("sameAscii(abc, cba) -> ");
-        System.out.println(sameAscii("abc", "cba"));
+        System.out.println(discount(100, 20));
     }
 }
