@@ -42,7 +42,7 @@ public class AStarState
         if (!openWaypoints.isEmpty()){
             Waypoint point;
             Location loc = new Location(1, 1);
-            float min = 99999999;
+            double min = Double.POSITIVE_INFINITY;
             for (Map.Entry entry : openWaypoints.entrySet()){
                 point = (Waypoint)entry.getValue();
                 if (point.getTotalCost() < min){
@@ -87,9 +87,6 @@ public class AStarState
     /** Returns the current number of open waypoints. **/
     public int numOpenWaypoints()
     {
-        System.out.println("numOpenWaypoints");
-        System.out.println(openWaypoints.size());
-        System.out.println(closeWaypoints.size());
         return openWaypoints.size();
     }
 

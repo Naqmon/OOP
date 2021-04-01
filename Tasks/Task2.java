@@ -73,7 +73,6 @@ public class Task2 {
     }
 
     public static void main(String[] args){
-        int[] array = {324, 4, 36, 7435, 23, -345, -3};
         System.out.println(discount(100, 20));
     }
 }

@@ -40,7 +40,6 @@ class Task1 {
         System.out.print("divisibleByFive(34) -> \t");
         System.out.println(divisibleByFive(34));
         System.out.print("and(true, true) -> \t");
-        System.out.println(and(true, true));
         System.out.print("howManyWalls(92, 5, 11) -> \t");
         System.out.println(howManyWalls(92, 5, 11));
         System.out.print("squared(12) -> \t");
