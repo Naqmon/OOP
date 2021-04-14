@@ -3,9 +3,8 @@ import java.util.Arrays;
 
 public class Task4{
     public static void main(String args[]){
-        String str = "abc abd acd aha!";
-        commonLastVowel(str);
     }
+
 
     static String unrepeated(String str){
         HashSet<String> duplicates  = new HashSet<>();
@@ -19,6 +18,7 @@ public class Task4{
         return st;
     }
 
+
     static int memeSum(int a, int b){
         String st = "";
         while(a > 0 && b > 0){
@@ -28,6 +28,8 @@ public class Task4{
         }
         return Integer.parseInt(st);
     }
+    
+
     static String commonLastVowel(String str){
         str = str.toLowerCase();
         String words[] = str.split(" ");
@@ -48,13 +50,35 @@ public class Task4{
                 mx = vowels[i];
             }
         }
-        if(ind == 0){ return "a"; }
+        if(ind == 0)     { return "a"; }
         else if(ind == 1){ return "e"; }
         else if(ind == 2){ return "y"; }
         else if(ind == 3){ return "u"; }
         else if(ind == 4){ return "i"; }
         else if(ind == 5){ return "o"; }
         else { return "No vowels in end words"; }
+    }
+
+
+    static int foo(int num){
+        int array[] = {};
+        int n = num;
+        int i = 0;
+        while (n > 0){
+            array = Arrays.copyOf(array, array.length+1);
+            array[i] = n % 10;
+            n /= 10;
+            i++;
+        }
+        Arrays.sort(array);
+        n = 0;
+        for (i = 0; i < array.length; i++){
+            n += array[i]*Math.pow(10, i);
+        }
+        if (num - n >= 0 ){
+            return num - n;
+        }
+        return 0;
     }
 
     static int largestGap(int array[]){
@@ -114,10 +138,19 @@ public class Task4{
 
     static String unmix(String str){
         String st = "";
-        for (int i = 0; i < str.length(); i += 2){
-           st += String.valueOf(str.charAt(i+1)) + String.valueOf(str.charAt(i));
+        if (str.length() % 2 == 0){
+            for (int i = 0; i < str.length(); i += 2){
+            st += String.valueOf(str.charAt(i+1)) + String.valueOf(str.charAt(i));
+            }
+        }
+        else{
+            for (int i = 0; i < str.length()-1; i += 2){
+            st += String.valueOf(str.charAt(i+1)) + String.valueOf(str.charAt(i));
+            }
+            st += String.valueOf(str.charAt(str.length()-1));
         }
         return st;
+            
     }
 
     static boolean cons(int array[]){
@@ -149,6 +182,5 @@ public class Task4{
             }            
         }
         return "not seven";
-
     }
 }

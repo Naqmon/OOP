@@ -1,18 +1,39 @@
-public class JImageDisplay extends javax.swing.JComponent{
-    private java.awt.image.BufferedImage buffImage;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
-    public JImageDisplay(int w, int h){
-        buffImage = new java.awt.image.BufferedImage(w, h, java.awt.image.BufferedImage.TYPE_INT_RGB);
-        java.awt.Dimension dim = new java.awt.Dimension(w, h);
-        super.setPreferredSize(dim);
+public class JImageDisplay extends JComponent {
+    private BufferedImage image;
+
+    // объявление изображения и его параметров
+    public JImageDisplay(int width, int height) {
+        image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        Dimension dimension = new Dimension(width, height);
+        super.setPreferredSize(dimension);
     }
-    public void paintComponent(java.awt.Graphics g){
-        super.paintComponent(g);
-        if(g.drawImage(java.awt.Image, 0, 0, Image.getWidth(null), Image.getHeight(null), null)){
+
+    // метод отрисовки изображения
+    public void paintComponent(Graphics graphics) {
+        super.paintComponent(graphics);
+        graphics.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), null);
+    }
+
+    // очистка изображения (устанавливает все пиксели
+    // в черный цвет)
+    public void clearImage() {
+        for (int i = 0; i < image.getWidth(); i++) {
+            for (int j = 0; j < image.getHeight(); j++) {
+                drawPixel(i, j, 0);
+            }
         }
     }
-    public void clearImage(){
+
+    // задание цвета конкретному пикселю
+    public void drawPixel(int x, int y, int rgbColor) {
+        image.setRGB(x, y, rgbColor);
     }
-    public void drawPixel(int x, int y, int rgbColor){
+
+    public BufferedImage getImage() {
+        return image;
     }
 }
