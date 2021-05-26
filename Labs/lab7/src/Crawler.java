@@ -39,14 +39,8 @@ public class Crawler {
                             StringBuilder currentLink = new StringBuilder();
                             int i = line.indexOf(currentPair.URL_PREFIX);
                             while (line.charAt(i) != '"' && line.charAt(i) != ' ') {
-                                if (line.charAt(i) == '<') {
-                                    currentLink.deleteCharAt(currentLink.length() - 1);
-                                    break;
-                                }
-                                else {
-                                    currentLink.append(line.charAt(i));
-                                    i++;
-                                }
+                                currentLink.append(line.charAt(i));
+                                i++;
                             }
                             URLDepthPair newPair = new URLDepthPair(currentLink.toString(), currentPair.depth + 1);
                             if (currentPair.check(findLink, newPair) && currentPair.check(viewedLink, newPair) && !currentPair.URL.equals(newPair.URL))
@@ -64,7 +58,7 @@ public class Crawler {
         showResult(viewedLink);
     }
     public static void main(String[] args) {
-        String[] arg = new String[]{"https://natribu.org/ru","4"};
+        String[] arg = new String[]{"http://natribu.org/ru","4"};
         try {
             Process(arg[0], Integer.parseInt(arg[1]));
         } catch (NumberFormatException | IOException e) {

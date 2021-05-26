@@ -3,6 +3,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import jdk.javadoc.internal.doclets.formats.html.SplitIndexWriter;
+
 public class Task5 {
     public static boolean sameLetterPattern(String str, String str2){
         for(int i = 0; i < str2.length()-1; i++) {
@@ -11,13 +13,37 @@ public class Task5 {
         return str.equals(str2);
     }
     public static String spiderVSfly(String spider, String fly){
-        char ch[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
-        char spX = spider.charAt(0);
-        int spY = Integer.parseInt(String.valueOf(spider.charAt(1)));
-        char flX = fly.charAt(0);
-        int flY = Integer.parseInt(String.valueOf(fly.charAt(1)));
-        if(java.util.Arrays.hashCode(spX))
-        return spider;
+        int sx = spider.charAt(0) - 65;
+        int sy = spider.charAt(1) - 48;
+        int fx = fly.charAt(0) - 65;
+        int fy = fly.charAt(1) - 48;
+
+        double strategyDist1 = sy + fy;
+        double strategyDist2 = Math.abs(sy - fy) + ((sx + fx) % 8) * fy * 0.76536686473;
+
+        String path = "";
+
+        if (strategyDist1 <= strategyDist2) {
+            for (int i = 0; i < sy; i++) {
+                path += String.valueOf(spider.charAt(0)) + String.valueOf(sy - i) + "-";
+            }
+            path += "A0-";
+            for (int i = 0; i < fy; i++) {
+                path += String.valueOf(fly.charAt(0)) + String.valueOf(i+1) + "-";
+            }
+        } else {
+            for (int i = 0; i < Math.abs(sy - fy); i++) {
+                path += spider.charAt(0);
+                if (sy > fy) path += sy - i;
+                else path += sy + i;
+                path += '-';
+            }
+            for (int i = 0; i <= (sx + fx) % 8; i++) {
+                path += (char)(65 + (sx + i) % 8) + String.valueOf(fly.charAt(1)) + "-";
+            }
+        }
+
+        return path.substring(0, path.length() - 1);
     }
     public static int digitCount(int num){
         if(num > 0){ return digitCount(num/10)+1; }
@@ -105,7 +131,6 @@ public class Task5 {
         for(int i = 0; i < sa.length(); i++){
             int k = -1;
             for (int j = 0; j < sb.length(); j++){
-                System.out.println(sa.charAt(i) + " " + sb.charAt(j));
                 if( Integer.parseInt(String.valueOf(sb.charAt(j))) > Integer.parseInt(String.valueOf(sa.charAt(i))) ){
                     sa = sa.replaceFirst(String.valueOf(sa.charAt(i)), String.valueOf(sb.charAt(j)));
                     k = j;
@@ -142,8 +167,8 @@ public class Task5 {
         int mnA = city.get(cityA) % 100;
         int chB = city.get(cityB) / 100;
         int mnB = city.get(cityB) % 100;
-        //date.setHours(date.getHours()+chB-chA);
-        //date.setMinutes(date.getMinutes()+mnB-mnA);
+        date.setHours(date.getHours()+chB-chA);
+        date.setMinutes(date.getMinutes()+mnB-mnA);
         return formater2.format(date);
     }
     public static boolean isNew(int num){
@@ -165,7 +190,7 @@ public class Task5 {
         return true;
     }
     public static void main(String args[]){
-        System.out.println();
+        System.out.println(spiderVSfly("A4", "A4"));
     }
     
 }
