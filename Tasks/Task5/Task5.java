@@ -3,7 +3,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-import jdk.javadoc.internal.doclets.formats.html.SplitIndexWriter;
 
 public class Task5 {
     public static boolean sameLetterPattern(String str, String str2){
@@ -18,12 +17,12 @@ public class Task5 {
         int fx = fly.charAt(0) - 65;
         int fy = fly.charAt(1) - 48;
 
-        double strategyDist1 = sy + fy;
-        double strategyDist2 = Math.abs(sy - fy) + ((sx + fx) % 8) * fy * 0.76536686473;
+        double Dist1 = sy + fy;
+        double Dist2 = Math.abs(sy - fy) + ((sx + fx) % 8) * fy * 0.76536686473;
 
         String path = "";
 
-        if (strategyDist1 <= strategyDist2) {
+        if (Dist1 <= Dist2) {
             for (int i = 0; i < sy; i++) {
                 path += String.valueOf(spider.charAt(0)) + String.valueOf(sy - i) + "-";
             }
@@ -45,6 +44,7 @@ public class Task5 {
 
         return path.substring(0, path.length() - 1);
     }
+    /* */
     public static int digitCount(int num){
         if(num > 0){ return digitCount(num/10)+1; }
         return 0;
@@ -190,7 +190,7 @@ public class Task5 {
         return true;
     }
     public static void main(String args[]){
-        System.out.println(spiderVSfly("A4", "A4"));
+        System.out.println(timeDifference("Los Angeles", "April 1, 2011 23:23", "Canberra"));
     }
     
 }
